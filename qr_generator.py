@@ -15,11 +15,20 @@ class App(ctk.CTk):
 
         # Customization
         self.title("")
-        self.iconbitmap(r"C:\Users\amartinez\Desktop\python\tkinter\QR_Code\empty.ico")
+        self.iconbitmap(
+            r"C:\Users\amartinez\Desktop\python\tkinter_projects\QR_Code\empty.ico"
+        )
         self.geometry("400x400")
 
         # Entry field
+        # A variable defined using StringVar() holds a string data where we can set text value and can retrieve it.
+        # Also, we can pass this variable to textvariable parameter for a widget like Entry.
+        # The widget will automatically get updated with the new value whenever the value of the StringVar() variable changes.
         self.entry_string = ctk.StringVar()
+
+        # This line is setting up a trace on the self.entry_string variable.
+        # Whenever the content of the entry field associated with self.entry_string is changed,
+        # the self.create_qr method will be called.
         self.entry_string.trace("w", self.create_qr)
         EntryField(self, self.entry_string, self.save)
 
@@ -108,4 +117,7 @@ class QrImage(tk.Canvas):
         self.delete("all")
 
 
-App()
+# Good Practice to add this so it doesnt run any other code from other files
+if __name__ == "__main__":
+    App()
+
